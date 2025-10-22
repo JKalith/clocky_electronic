@@ -69,6 +69,6 @@ class WebCalcController(http.Controller):
             "result": result,          # número o None
             "error": error,            # texto o None
         }
-        # Renderizamos la plantilla QWeb "web_calc_account.calculator_template"
+        # Renderizamos la plantilla QWeb "clocky_electronic"
         # y le pasamos "values" para pintar la página.
-        return request.render("web_calc_account.calculator_template", values)
+        return request.render("clocky_electronic", values)
