@@ -1,0 +1,110 @@
+/* Sección con padding y fondo gris clarito */
+.calc-section {
+  padding: 48px 0;
+  background: #f7f8fb;
+}
+
+/* Tarjeta blanca centrada con sombra suave */
+.calc-card {
+  max-width: 680px;      /* ancho máximo */
+  margin: 0 auto;        /* centrar */
+  background: #ffffff;   /* fondo blanco */
+  border-radius: 16px;   /* puntas redondeadas */
+  padding: 28px;         /* espacio interno */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06); /* sombra */
+}
+
+/* Título de la página */
+.calc-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+/* Subtítulo con color más suave */
+.calc-subtitle {
+  margin: 0 0 24px;
+  color: #666;
+}
+
+/* Contenedor del formulario */
+.calc-form {
+  display: block;
+}
+
+/* Grid de tres columnas (A, B, Operación) con separación */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 columnas iguales */
+  gap: 16px;                           /* separación entre columnas */
+}
+
+/* Grupo label + input en columna */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo para el label */
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Estilos comunes para input/select */
+.form-group input,
+.form-group select {
+  border: 1px solid #dfe3e8;
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+/* Efecto de foco (cuando el usuario hace clic) */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 2px rgba(108,92,231,0.15);
+}
+
+/* Fila del botón */
+.btn-row {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Botón redondeado tipo píldora */
+.calc-btn {
+  border-radius: 999px;
+  padding: 10px 20px;
+}
+
+/* Bloques de alerta (resultado / error) */
+.calc-alert {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Estilo cuando todo va bien (resultado) */
+.calc-alert.ok {
+  background: #e8f7ee;
+  color: #1b7a3a;
+  border: 1px solid #cdeed8;
+}
+
+/* Estilo cuando hay error (por ejemplo división entre cero) */
+.calc-alert.error {
+  background: #fdeeee;
+  color: #a52a2a;
+  border: 1px solid #f6d0d0;
+}
+
+/* Versión responsive: en móviles pasa a 1 columna */
+@media (max-width: 768px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+}
