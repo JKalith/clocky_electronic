@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- noupdate="1" evita que este registro se modifique al actualizar el módulo
-     (a menos que cambies el XML explícitamente). -->
-<odoo noupdate="1">
-  <!-- Crea un ítem de menú en la barra del Website que apunta a /calculator -->
-  <record id="website_menu_calculator" model="website.menu">
-    <!-- Texto que aparecerá en el menú -->
-    <field name="name">Calculadora</field>
-    <!-- URL destino al hacer clic -->
-    <field name="url">/calculator</field>
-    <!-- Parent es el menú principal del website -->
-    <field name="parent_id" ref="website.main_menu"/>
-    <!-- sequence define el orden; menor = más a la izquierda -->
-    <field name="sequence" eval="95"/>
-  </record>
+<odoo>
+  <data noupdate="1">
+    <!-- Ítem de menú en el Website que apunta a /calculator -->
+    <record id="website_menu_calculator" model="website.menu">
+      <field name="name">Calculadora</field>
+      <field name="url">/calculator</field>
+      <field name="parent_id" ref="website.main_menu"/>
+      <field name="sequence" eval="95"/>
+      <!-- Opcional en multi-website:
+      <field name="website_id" ref="website.default_website"/>
+      -->
+    </record>
+  </data>
 </odoo>
