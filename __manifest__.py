@@ -12,7 +12,7 @@
     ],
     "assets": {
         "web.assets_frontend": [
-            "fact_electronic_clocky/static/src/scss/styles.scss",
+            "clocky_electronic/static/src/scss/styles.scss",
         ],
     },
     "installable": True,
