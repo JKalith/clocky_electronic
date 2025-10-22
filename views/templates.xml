@@ -1,78 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- Definimos una plantilla QWeb con id "calculator_template".
-       page="True" indica que es una página web completa (usa layout del website). -->
-  <template id="calculator_template" name="Calculator Page" page="True">
-    <!-- t-call="website.layout" inserta el header/footer/estilos del Website de Odoo. -->
-    <t t-call="website.layout">
+  <data noupdate="0">
+    <!-- Definimos una plantilla QWeb con id "calculator_template".
+         page="True" indica que es una página web completa (usa layout del website). -->
+    <template id="calculator_template" name="Calculator Page" page="True">
+      <!-- t-call="website.layout" inserta el header/footer/estilos del Website de Odoo. -->
+      <t t-call="website.layout">
 
-      <!-- Bloques vacíos para permitir edición desde el constructor del website (opcional). -->
-      <div class="oe_structure"/>
+        <!-- Bloques vacíos para permitir edición desde el constructor del website (opcional). -->
+        <div class="oe_structure"/>
 
-      <!-- Nuestra sección principal con clases para estilos -->
-      <section class="calc-section">
-        <div class="container calc-card">
-          <h1 class="calc-title">Calculadora</h1>
-          <p class="calc-subtitle">
-            HTML + CSS en el frontend · Lógica en Python (controller)
-          </p>
+        <!-- Nuestra sección principal con clases para estilos -->
+        <section class="calc-section">
+          <div class="container calc-card">
+            <h1 class="calc-title">Calculadora</h1>
+            <p class="calc-subtitle">
+              HTML + CSS en el frontend · Lógica en Python (controller)
+            </p>
 
-          <!-- Formulario que envía a /calculator por POST -->
-          <form t-attf-action="/calculator" method="post" class="calc-form">
-            <!-- Token CSRF para seguridad: debe venir de request.csrf_token() -->
-            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <!-- Formulario que envía a /calculator por POST -->
+            <form t-attf-action="/calculator" method="post" class="calc-form">
+              <!-- Token CSRF para seguridad: debe venir de request.csrf_token() -->
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
-            <!-- Grid de 3 columnas: A, B y operación -->
-            <div class="calc-grid">
-              <div class="form-group">
-                <label for="a">Número A</label>
-                <!-- t-att-value rellena el input con el valor 'a' (si lo hay) -->
-                <input id="a" type="number" step="any" name="a" placeholder="0"
-                       t-att-value="a or ''" required="required"/>
+              <!-- Grid de 3 columnas: A, B y operación -->
+              <div class="calc-grid">
+                <div class="form-group">
+                  <label for="a">Número A</label>
+                  <!-- t-att-value rellena el input con el valor 'a' (si lo hay) -->
+                  <input id="a" type="number" step="any" name="a" placeholder="0"
+                         t-att-value="a or ''" required="required"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="b">Número B</label>
+                  <input id="b" type="number" step="any" name="b" placeholder="0"
+                         t-att-value="b or ''" required="required"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="op">Operación</label>
+                  <select id="op" name="op">
+                    <!-- t-att-selected añade el atributo selected cuando la condición es True -->
+                    <option value="add" t-att-selected="op == 'add'">Suma</option>
+                    <option value="sub" t-att-selected="op == 'sub'">Resta</option>
+                    <option value="mul" t-att-selected="op == 'mul'">Multiplicación</option>
+                    <option value="div" t-att-selected="op == 'div'">División</option>
+                  </select>
+                </div>
               </div>
 
-              <div class="form-group">
-                <label for="b">Número B</label>
-                <input id="b" type="number" step="any" name="b" placeholder="0"
-                       t-att-value="b or ''" required="required"/>
+              <div class="btn-row">
+                <button type="submit" class="btn btn-primary calc-btn">Calcular</button>
               </div>
+            </form>
 
-              <div class="form-group">
-                <label for="op">Operación</label>
-                <select id="op" name="op">
-                  <!-- t-att-selected añade el atributo selected cuando la condición es True -->
-                  <option value="add" t-att-selected="op == 'add'">Suma</option>
-                  <option value="sub" t-att-selected="op == 'sub'">Resta</option>
-                  <option value="mul" t-att-selected="op == 'mul'">Multiplicación</option>
-                  <option value="div" t-att-selected="op == 'div'">División</option>
-                </select>
+            <!-- Si hay error, lo mostramos con un bloque rojo -->
+            <t t-if="error">
+              <div class="calc-alert error">
+                <span t-esc="error"/>
               </div>
-            </div>
+            </t>
 
-            <div class="btn-row">
-              <button type="submit" class="btn btn-primary calc-btn">Calcular</button>
-            </div>
-          </form>
+            <!-- Si hay resultado y no hay error, lo mostramos en verde -->
+            <t t-if="result is not None and error is None">
+              <div class="calc-alert ok">
+                Resultado: <strong t-esc="result"/>
+              </div>
+            </t>
+          </div>
+        </section>
 
-          <!-- Si hay error, lo mostramos con un bloque rojo -->
-          <t t-if="error">
-            <div class="calc-alert error">
-              <span t-esc="error"/>
-            </div>
-          </t>
+        <!-- Otro bloque editable del website (opcional) -->
+        <div class="oe_structure"/>
 
-          <!-- Si hay resultado y no hay error, lo mostramos en verde -->
-          <t t-if="result is not None and error is None">
-            <div class="calc-alert ok">
-              Resultado: <strong t-esc="result"/>
-            </div>
-          </t>
-        </div>
-      </section>
-
-      <!-- Otro bloque editable del website (opcional) -->
-      <div class="oe_structure"/>
-
-    </t>
-  </template>
+      </t>
+    </template>
+  </data>
 </odoo>
