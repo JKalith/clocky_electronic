@@ -71,4 +71,4 @@ class WebCalcController(http.Controller):
         }
         # Renderizamos la plantilla QWeb "clocky_electronic"
         # y le pasamos "values" para pintar la página.
-        return request.render("clocky_electronic", values)
+        return request.render("clocky_electronic.calculator_template", values)
