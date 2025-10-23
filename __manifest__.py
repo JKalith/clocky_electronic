@@ -1,20 +1,17 @@
+# -*- coding: utf-8 -*-
 {
-    "name": "Website Calculator (Account Dep)",
-    "summary": "Calculadora simple en el Website con lógica Python (depende de Facturación)",
+    "name": "Accounting Calculator (Header Button)",
+    "summary": "Calculadora básica (sumar, restar, multiplicar) desde Facturas",
     "version": "17.0.1.0.0",
-    "author": "Clocky App",
+    "category": "Accounting/Accounting",
+    "author": "James / Clocky",
     "license": "LGPL-3",
-    "category": "Website",
-    "depends": ["website", "account"],
+    "depends": ["account"],   # solo contabilidad
     "data": [
-        "views/templates.xml",
-        "data/website_menu.xml",
+        "security/ir.model.access.csv",
+        "views/calculator_views.xml",      # vista del wizard
+        "views/account_move_inherit.xml",  # botón en el header de facturas
     ],
-    "assets": {
-        "web.assets_frontend": [
-            "clocky_electronic/static/src/scss/styles.scss",
-        ],
-    },
     "installable": True,
-    "application": True,
+    "application": False,
 }
